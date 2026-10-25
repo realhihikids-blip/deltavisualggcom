@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DELTA VISUALS — client-side visual customization for Minecraft</title>
+<meta name="description" content="ClickGUI, HUD editor, cosmetic auras, item shortcuts and profiles for Fabric 1.21.11. Client-side only. No combat advantages.">
+<meta name="theme-color" content="#06050a">
+<meta property="og:title" content="DELTA VISUALS">
+<meta property="og:description" content="Client-side visual customization for Minecraft Fabric 1.21.11.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js-anim");</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="pre-curtain pre-curtain--top"></div>
+  <div class="pre-curtain pre-curtain--bot"></div>
+  <div class="pre-core">
+    <svg class="pre-delta" viewBox="0 0 120 120" fill="none">
+      <path class="pre-path" pathLength="1" d="M60 12 L108 100 H12 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+      <path class="pre-path pre-path--in" pathLength="1" d="M60 44 L84 88 H36 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+    <div class="pre-count"><span id="preNum">0</span><i>%</i></div>
+    <div class="pre-label">DELTA VISUALS</div>
+  </div>
+</div>
+
+<div class="progress" id="progress"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><i class="cursor-dot"></i><i class="cursor-ring"></i></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav-logo" data-hover data-scroll>
+    <img src="assets/icon.png" alt="" width="28" height="28">
+    <span>DELTA<b>VISUALS</b></span>
+  </a>
+  <nav class="nav-links">
+    <a href="#features" data-hover data-scroll>Features</a>
+    <a href="#modules" data-hover data-scroll>Modules</a>
+    <a href="#demo" data-hover data-scroll>Live demo</a>
+    <a href="#aura" data-hover data-scroll>Aura</a>
+    <a href="#install" data-hover data-scroll>Install</a>
+    <a href="#faq" data-hover data-scroll>FAQ</a>
+  </nav>
+  <a href="#download" class="btn btn--sm" data-magnetic data-hover data-scroll><span>Download</span></a>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <p class="eyebrow" data-hero="fade"><i></i>Fabric &nbsp;·&nbsp; Minecraft 1.21.11 &nbsp;·&nbsp; client-side</p>
+    <h1 class="hero-title" aria-label="Delta Visuals">
+      <span class="line" data-split>DELTA</span>
+      <span class="line line--outline" data-split>VISUALS</span>
+    </h1>
+    <p class="hero-sub" data-hero="fade">
+      ClickGUI, HUD editor, cosmetic auras, item shortcuts and profiles.<br>
+      Make your client look the way you want. <strong>No combat advantages.</strong>
+    </p>
+    <div class="hero-cta" data-hero="fade">
+      <a href="#download" class="btn" data-magnetic data-hover data-scroll><span>Download v0.3.0</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg></a>
+      <a href="#demo" class="btn btn--ghost" data-magnetic data-hover data-scroll><span>Try live demo</span></a>
+    </div>
+  </div>
+  <div class="hero-meta" data-hero="fade">
+    <div><small>Loader</small><b>Fabric ≥ 0.18.0</b></div>
+    <div><small>Java</small><b>21+</b></div>
+    <div><small>Side</small><b>Client</b></div>
+    <div><small>Version</small><b>0.3.0</b></div>
+  </div>
+  <div class="scroll-hint" data-hero="fade"><span></span>scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<section class="marquee" id="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-row">
+      <span>CLICKGUI</span><i>◆</i><span class="o">HUD EDITOR</span><i>◆</i><span>COSMETIC AURA</span><i>◆</i><span class="o">PROFILES</span><i>◆</i><span>ITEM SHORTCUTS</span><i>◆</i><span class="o">THEMES</span><i>◆</i>
+    </div>
+    <div class="marquee-row">
+      <span>CLICKGUI</span><i>◆</i><span class="o">HUD EDITOR</span><i>◆</i><span>COSMETIC AURA</span><i>◆</i><span class="o">PROFILES</span><i>◆</i><span>ITEM SHORTCUTS</span><i>◆</i><span class="o">THEMES</span><i>◆</i>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow" data-reveal><i></i>01 — What it does</p>
+      <h2 class="sec-title" data-reveal>Everything visual.<br><span class="grad">Nothing unfair.</span></h2>
+    </header>
+
+    <div class="bento">
+      <article class="card card--lg" data-card data-reveal>
+        <div class="card-glow"></div>
+        <span class="card-num">01</span>
+        <h3>ClickGUI</h3>
+        <p>One menu for every module. Rebind the key, toggle modules, tweak every setting — sliders, color pickers, modes.</p>
+        <div class="mini-gui" aria-hidden="true">
+          <div class="mg-row"><i class="mg-sw on"></i><span>Watermark</span></div>
+          <div class="mg-row"><i class="mg-sw on"></i><span>Info HUD</span></div>
+          <div class="mg-row"><i class="mg-sw"></i><span>Radius Circle</span></div>
+          <div class="mg-row"><i class="mg-sw on"></i><span>Aura</span></div>
+        </div>
+      </article>
+      <article class="card" data-card data-reveal>
+        <div class="card-glow"></div>
+        <span class="card-num">02</span>
+        <h3>HUD Editor</h3>
+        <p>Drag, scale, enable and reset every HUD element. Wheel to scale, <kbd>R</kbd> to reset.</p>
+      </article>
+      <article class="card" data-card data-reveal>
+        <div class="card-glow"></div>
+        <span class="card-num">03</span>
+        <h3>Cosmetic Aura</h3>
+        <p>Particle aura around your character with two colors, density, radius and speed.</p>
+      </article>
+      <article class="card" data-card data-reveal>
+        <div class="card-glow"></div>
+        <span class="card-num">04</span>
+        <h3>Item shortcuts</h3>
+        <p>Pearl, totem and elytra swaps on a key — with anti-spam delay and optional messages.</p>
+      </article>
+      <article class="card card--wide" data-card data-reveal>
+        <div class="card-glow"></div>
+        <span class="card-num">05</span>
+        <h3>Profiles &amp; Themes</h3>
+        <p>Switch, duplicate and reset config profiles. Restyle the whole GUI with presets or your own accent colors.</p>
+        <div class="swatches" aria-hidden="true"><i style="--c:#7342da"></i><i style="--c:#22d3ee"></i><i style="--c:#fb7185"></i><i style="--c:#34d399"></i><i style="--c:#fbbf24"></i></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES: horizontal pinned scroll -->
+<section class="hscroll" id="modules">
+  <div class="hscroll-pin">
+    <div class="hscroll-head">
+      <p class="eyebrow"><i></i>02 — Modules</p>
+      <h2 class="sec-title">14 modules.<br><span class="grad">6 categories.</span></h2>
+      <div class="hbar"><span id="hbar"></span></div>
+    </div>
+    <div class="htrack" id="htrack">
+
+      <article class="panel" data-hpanel>
+        <span class="panel-idx">CONTROLS</span>
+        <ul class="mods">
+          <li><h4>Click GUI</h4><p>Opens this menu. Change the key with the Keybind button.</p></li>
+          <li><h4>HUD Editor</h4><p>Drag, scale, enable and reset HUD elements. Wheel = scale, R = reset hovered.</p></li>
+        </ul>
+        <span class="panel-big" aria-hidden="true">01</span>
+      </article>
+
+      <article class="panel" data-hpanel>
+        <span class="panel-idx">VISUALS</span>
+        <ul class="mods">
+          <li><h4>Watermark</h4><p>Client name tag with optional FPS.</p></li>
+          <li><h4>Reach Display</h4><p>Distance to your target. Decimals, update interval, label, target name, hide without target.</p></li>
+          <li><h4>Armor HUD</h4><p>Vertical or horizontal layout, durability percent, held item.</p></li>
+          <li><h4>Info HUD</h4><p>Ping, coordinates, facing, clock and FPS.</p></li>
+          <li><h4>Item Status</h4><p>Shows if Pearl / Totem / Elytra shortcuts are ready.</p></li>
+        </ul>
+        <span class="panel-big" aria-hidden="true">02</span>
+      </article>
+
+      <article class="panel" data-hpanel>
+        <span class="panel-idx">COSMETICS</span>
+        <ul class="mods">
+          <li><h4>Aura</h4><p>Cosmetic particle aura around your character. Main and second color, speed, size, density, radius, opacity, first-person toggle.</p></li>
+        </ul>
+        <span class="panel-big" aria-hidden="true">03</span>
+      </article>
+
+      <article class="panel" data-hpanel>
+        <span class="panel-idx">PLAYER</span>
+        <ul class="mods">
+          <li><h4>Elytra Swap</h4><p>With inventory open: swap between elytra and chestplate. Anti-spam delay.</p></li>
+          <li><h4>Pearl Swap</h4><p>Select the ender pearl in your hotbar; press again to go back.</p></li>
+          <li><h4>Totem Swap</h4><p>Move a totem to the off-hand. Choose what happens with the inventory closed.</p></li>
+        </ul>
+        <span class="panel-big" aria-hidden="true">04</span>
+      </article>
+
+      <article class="panel" data-hpanel>
+        <span class="panel-idx">WORLD</span>
+        <ul class="mods">
+          <li><h4>Radius Circle</h4><p>A circle around the crosshair target. Radius, solid / dashed / double style, two colors.</p></li>
+        </ul>
+        <span class="panel-big" aria-hidden="true">05</span>
+      </article>
+
+      <article class="panel" data-hpanel>
+        <span class="panel-idx">CONFIGS</span>
+        <ul class="mods">
+          <li><h4>Profiles</h4><p>Switch, duplicate, create, save and reset configuration profiles.</p></li>
+          <li><h4>Theme</h4><p>Presets, accent colors, panel opacity, text size, scale, bold, shadow, gradient, animations.</p></li>
+        </ul>
+        <span class="panel-big" aria-hidden="true">06</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="section" id="demo">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow" data-reveal><i></i>03 — Live demo</p>
+      <h2 class="sec-title" data-reveal>Play with it<br><span class="grad">right here.</span></h2>
+      <p class="sec-lead" data-reveal>Toggle modules in the ClickGUI, drag HUD elements in the game view, scroll over one to scale it, press <kbd>R</kbd> to reset. Pick a theme — the whole site follows.</p>
+    </header>
+
+    <div class="demo" data-reveal>
+      <!-- ClickGUI mock -->
+      <div class="gui" id="gui">
+        <div class="gui-bar"><img src="assets/icon.png" alt="" width="18" height="18"><b>DELTA VISUALS</b><span>0.3.0</span></div>
+        <div class="gui-body">
+          <ul class="gui-side" id="guiSide"></ul>
+          <div class="gui-main">
+            <ul class="gui-mods" id="guiMods"></ul>
+            <div class="gui-set" id="guiSet"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game view mock -->
+      <div class="game" id="game" data-lenis-prevent>
+        <div class="game-sky"></div>
+        <div class="game-ground"></div>
+        <div class="game-cross"></div>
+        <div class="game-hint"><kbd>Drag</kbd> move &nbsp; <kbd>Wheel</kbd> scale &nbsp; <kbd>R</kbd> reset</div>
+        <div class="hud" data-hud="watermark" style="--x:3%;--y:4%"></div>
+        <div class="hud" data-hud="info" style="--x:3%;--y:14%"></div>
+        <div class="hud" data-hud="reach" style="--x:41%;--y:56%"></div>
+        <div class="hud" data-hud="armor" style="--x:88%;--y:34%"></div>
+        <div class="hud" data-hud="items" style="--x:3%;--y:62%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AURA -->
+<section class="section" id="aura">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow" data-reveal><i></i>04 — Cosmetics</p>
+      <h2 class="sec-title" data-reveal>Aura<br><span class="grad">playground.</span></h2>
+      <p class="sec-lead" data-reveal>A preview of the cosmetic aura idea with the same kind of controls the module has. Effects here are an illustration for the website.</p>
+    </header>
+    <div class="aura" data-reveal>
+      <div class="aura-stage"><canvas id="auraCanvas"></canvas></div>
+      <div class="aura-ctl" id="auraCtl">
+        <div class="ctl">
+          <label>Effect</label>
+          <div class="seg" id="auraType">
+            <button data-v="orbit" class="on" data-hover>Orbit</button>
+            <button data-v="helix" data-hover>Helix</button>
+            <button data-v="flame" data-hover>Flame</button>
+            <button data-v="rain" data-hover>Rain</button>
+            <button data-v="burst" data-hover>Burst</button>
+          </div>
+        </div>
+        <div class="ctl"><label>Speed <output id="o-speed">1.0</output></label><input type="range" id="a-speed" min="0.2" max="3" step="0.1" value="1"></div>
+        <div class="ctl"><label>Size <output id="o-size">3</output></label><input type="range" id="a-size" min="1" max="8" step="0.5" value="3"></div>
+        <div class="ctl"><label>Density <output id="o-density">60</output></label><input type="range" id="a-density" min="10" max="140" step="1" value="60"></div>
+        <div class="ctl"><label>Radius <output id="o-radius">1.0</output></label><input type="range" id="a-radius" min="0.5" max="1.6" step="0.05" value="1"></div>
+        <div class="ctl"><label>Opacity <output id="o-opacity">90</output></label><input type="range" id="a-opacity" min="10" max="100" step="1" value="90"></div>
+        <label class="check" data-hover><input type="checkbox" id="a-two" checked><i></i>Two colors</label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="stats">
+  <div class="wrap stats-grid">
+    <div data-reveal><b data-count="14">0</b><span>modules</span></div>
+    <div data-reveal><b data-count="6">0</b><span>categories</span></div>
+    <div data-reveal><b data-count="12" data-suffix="+">0</b><span>theme options</span></div>
+    <div data-reveal><b data-count="0">0</b><span>combat advantages</span></div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section class="section" id="install">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow" data-reveal><i></i>05 — Install</p>
+      <h2 class="sec-title" data-reveal>Four steps.<br><span class="grad">One minute.</span></h2>
+    </header>
+    <ol class="steps" id="steps">
+      <span class="steps-line"><i id="stepsLine"></i></span>
+      <li data-reveal><b>01</b><div><h4>Java 21+</h4><p>Make sure Minecraft runs on Java 21 or newer.</p></div></li>
+      <li data-reveal><b>02</b><div><h4>Fabric Loader ≥ 0.18.0</h4><p>Install Fabric for Minecraft <code>1.21.11</code>.</p></div></li>
+      <li data-reveal><b>03</b><div><h4>Fabric API</h4><p>Required dependency. Put it in your <code>mods</code> folder.</p></div></li>
+      <li data-reveal><b>04</b><div><h4>Drop in the .jar</h4><p>Copy <code>delta-visuals-0.3.0.jar</code> into <code>mods</code>, launch the game and open the ClickGUI.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="section download" id="download">
+  <div class="wrap">
+    <div class="dl-card" data-reveal data-card>
+      <div class="card-glow"></div>
+      <img src="assets/icon.png" alt="Delta Visuals icon" width="96" height="96" class="dl-icon">
+      <h2>Delta Visuals <span class="grad">0.3.0</span></h2>
+      <p>Fabric · Minecraft 1.21.11 · Java 21+ · requires Fabric API</p>
+      <a class="btn btn--xl" href="downloads/delta-visuals-0.3.0.jar" download data-magnetic data-hover><span>Download .jar</span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg></a>
+      <code class="sha">SHA-256: dbf0eecbf5a08183a0db0f9e33d1658b1a882911c46e2508f60e0cd444e95d44</code>
+      <small>License: All Rights Reserved</small>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap wrap--narrow">
+    <header class="sec-head">
+      <p class="eyebrow" data-reveal><i></i>06 — FAQ</p>
+      <h2 class="sec-title" data-reveal>Questions.</h2>
+    </header>
+    <div class="faq">
+      <div class="faq-item" data-reveal><button class="faq-q" data-hover aria-expanded="false"><span>Does it give any combat advantage?</span><i></i></button><div class="faq-a"><div><p>No. Delta Visuals is client-side visual customization: GUI, HUD, cosmetics, item shortcuts and profiles.</p></div></div></div>
+      <div class="faq-item" data-reveal><button class="faq-q" data-hover aria-expanded="false"><span>Which versions are supported?</span><i></i></button><div class="faq-a"><div><p>Minecraft 1.21.11 with Fabric Loader 0.18.0 or newer, Fabric API and Java 21+.</p></div></div></div>
+      <div class="faq-item" data-reveal><button class="faq-q" data-hover aria-expanded="false"><span>Do I need it on the server too?</span><i></i></button><div class="faq-a"><div><p>No. The mod is client-only.</p></div></div></div>
+      <div class="faq-item" data-reveal><button class="faq-q" data-hover aria-expanded="false"><span>How do I move HUD elements?</span><i></i></button><div class="faq-a"><div><p>Open the HUD Editor from the ClickGUI. Drag elements, use the mouse wheel to scale and press R to reset the hovered one.</p></div></div></div>
+      <div class="faq-item" data-reveal><button class="faq-q" data-hover aria-expanded="false"><span>Can I keep several configs?</span><i></i></button><div class="faq-a"><div><p>Yes. The Profiles module lets you switch, duplicate, create, save and reset profiles.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-word" id="footerWord" aria-hidden="true">DELTA</div>
+  <div class="wrap footer-row">
+    <span>© 2026 DELTA VISUALS</span>
+    <span>Not affiliated with Mojang or Microsoft.</span>
+    <a href="#top" data-hover data-scroll>Back to top ↑</a>
+  </div>
+</footer>
+
+<!-- Libraries (pinned versions, CDN) -->
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- Project scripts -->
+<script defer src="js/scene.js"></script>
+<script defer src="js/aura.js"></script>
+<script defer src="js/demo.js"></script>
+<script defer src="js/main.js"></script>
+</body>
+</html>
